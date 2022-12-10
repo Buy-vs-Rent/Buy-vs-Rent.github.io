@@ -1,1 +1,345 @@
-Hello World
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta http-equiv="content-type" charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes" >
+        <meta name="description" content="色々Webサイトを調べましたが、多くが不動産仲介業者が住宅購入を勧めるために開発したツールでした。
+        このサイトでは、購入者・入居者の視点から、住宅を購入したあとの老朽化などを考慮した詳細な試算をできるようにしました。
+        築50年以降のマンションの価格データが少ないため一部推定になりますが、ページ下部で詳細な試算データも見ることができます。" >
+        <meta name="keywords" content="持ち家, 賃貸, 比較シミュレーション" >
+        <meta name="author" content="持ち家VS賃貸シミュレーター" >
+        <title>持ち家VS賃貸シミュレーター</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+        
+        
+        <!-- Third party plugin CSS-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-1S2LWY9SG0"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-1S2LWY9SG0');
+        </script>
+    </head>
+    <body id="page-top">
+
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-10 align-self-end">
+                        <h1 class="text-uppercase text-white font-weight-bold">持ち家VS賃貸シミュレーター</h1>
+                        <hr class="divider my-4" />
+                    </div>
+                    <div class="col-lg-8 align-self-baseline">
+                        <p class="text-white-75 font-weight-light mb-5 text-left">持ち家か賃貸、どちらが経済的に合理的か試算するため、
+                            色々Webサイトを調べましたが、多くが不動産仲介業者が住宅購入を勧めるために開発したツールでした。
+                            このサイトでは、購入者・入居者の視点から、住宅を購入したあとの老朽化などを考慮した詳細なシミュレーションをできるようにしました。
+                            築50年以降のマンションの価格データが少ないため一部推定になりますが、ページ下部で試算データを見ることができます。
+                            サラリーマンの最大の疑問である、持ち家VS賃貸問題を費用比較の面から解決します。なお、データは東京都内の中古マンション価格を参考に作成しました。</p>
+                        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#start">試算してみる</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main-->
+        <section class="page-section" id="start">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+ 
+
+                        <h1>持ち家の場合</h1>
+                        <table class="table ">
+
+                            <tr>
+                                <td>物件価格（消費税抜き）</td>
+                                <td><input class="form-control text-center" type="number" id="konyukakaku" name="konyukakaku" min="0" value="3700" oninput="myFunction()"></td>
+                            </tr>
+                            <tr>
+                                <td>物件価格（消費税込）</td>
+                                <td id="zeikomikakaku"></td>
+                            </tr>
+
+                            <tr>
+                                <td>築年数（年）</td>
+                                <td><input class="form-control text-center" type="number" id="chikunensu" name="chikunensu" min="0" max="50" value="15" oninput="myFunction()"></td>
+                            </tr>
+ 
+                            <tr>
+                                <td>ローン総返済額（万円）</td>
+                                <td id="hensaigaku"></td>
+                            </tr>
+                            <tr>
+                                <td>ローン返済月額（万円/月）</td>
+                                <td id="hensaigetsugaku"></td>
+                            </tr>
+                            <tr>
+                                <td>利率（％）</td>
+                                <td><input class="form-control text-center" type="number" id="riritsu" name="riritsu" min="0" max="100" value="1.3" oninput="myFunction()"></td>
+                            </tr>
+                            <tr>
+                                <td>返済期間（年）</td>
+                                <td><input class="form-control text-center" type="number" id="hensaikikan" name="hensaikikan" min="10" max="35" value="35" oninput="myFunction()"></td>
+                            </tr>
+                            <tr>
+                                <td>入居期間（年）</td>
+                                <td><input class="form-control text-center" type="number" id="nyukyokikan" name="nyukyokikan" min="10" max="50" value="35" oninput="myFunction()"></td>
+                            </tr>
+                            <tr>
+                                <td>諸費用（万円）</td>
+                                <td id="syohiyo"></td>
+                            </tr>
+                            <tr>
+                                <td>固定資産税総額</td>
+                                <td id="koteishisanzei"></td>
+                            </tr>
+                            <tr>
+                                <td>管理費（万円/月）</td>
+                                <td><input class="form-control text-center" type="number" id="kanrihi" name="kanrihi" min="0" value="2" oninput="myFunction()"></td>
+                            </tr>
+
+                            <tr>
+                                <td>管理費総額（万円）</td>
+                                <td id="kanrihi_sogaku"></td>
+                            </tr>
+                            <tr>
+                                <td>修繕積立金（万円/月）</td>
+                                <td><input class="form-control text-center" type="number" id="syuzentsumitate" name="syuzentsumitate" min="0" value="1.5" oninput="myFunction()"></td>
+                            </tr>
+                            <tr>
+                                <td>修繕積立金総額（万円）</td>
+                                <td id="syuzentsumitate_sogaku"></td>
+                            </tr>
+                            <tr>
+                                <td>駐車場代（万円/月）</td>
+                                <td><input class="form-control text-center" type="number" id="chusyajodai" name="chusyajodai" min="0" value="2" oninput="myFunction()"></td>
+                            </tr>
+                            <tr>
+                                <td>駐車場代総額（万円）</td>
+                                <td id="chusyajodai_sogaku"></td>
+                            </tr>
+                            <tr>
+                                <td>総支払額</td>
+                                <td id="soshiharaigaku"></td>
+                            </tr>
+                            <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                            <tr><td>住宅ローン減税（万円/年）</td><td>30</td></tr>
+                            <tr><td>住宅ローン減税適用期間（年）</td><td>10</td></tr>
+                            <tr><td>総減税額（万円）</td><td>300</td></tr>
+                            <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                            <tr>
+                                <td>物件残存価値（万円）</td>
+                                <td id="zanzonkachi"></td>
+                            </tr>
+                            <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                            <tr class="table-info">
+                                <td>実質負担総額（万円）</td>
+                                <td id="jisshitsufutansogaku"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+            
+            
+        <section class="page-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h1>同じ物件を借りた場合</h1>
+                        <table class="table">
+                            <tr>
+                                <td>入居期間（年）</td>
+                                <td id="nyukyokikan_hendo"></td>
+                            </tr>
+                            <tr>
+                                <td>賃料総額（万円）</td>
+                                <td id="chinryosogaku_hendo"></td>
+                            </tr>
+                            <tr>
+                                <td>入居時家賃（万円/月）</td>
+                                <td id="shokiyachin"></td>
+                            </tr>
+                            <tr>
+                                <td>老朽化後家賃（万円/月）</td>
+                                <td id="shukiyachin">10.9</td>
+                            </tr>
+                            <tr>
+                                <td>管理費総額（万円）</td>
+                                <td id="kanrihisogaku_hendo"></td>
+                            </tr>
+                            <tr>
+                                <td>更新料総額（万円）</td>
+                                <td id="koshinryo_sogaku_hendo"></td>
+                            </tr>
+                            <tr>
+                                <td>駐車場代（万円/月）</td>
+                                <td id="chusyajodai_hendo"></td>
+                            </tr>
+                            <tr>
+                                <td>駐車場代総額（万円）</td>
+                                <td id="chusyajodai_sogaku_hendo"></td>
+                            </tr>
+                            <tr>
+                                <td>総支払額</td>
+                                <td id="soshiharaigaku_hendo"></td>
+                            </tr>
+                            <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                            <tr>
+                                <td>家賃補助（万円/月）</td>
+                                <td><input class="form-control text-center" type="number" id="yachinhojo_hendo" name="yachinhojo_hendo" min="0" value="1.7" oninput="myFunction()"></td>
+                            </tr>
+                            <tr>
+                                <td>家賃補助総額（万円）</td>
+                                <td id="yachinhojo_sogaku_hendo"></td>
+                            </tr>
+                            <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                            <tr class="table-info">
+                                <td>実質負担総額（万円）</td>
+                                <td id="jisshitsufutansogaku_hendo"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="page-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h1>家賃固定の場合</h1>
+                        <table class="table">
+                            <tr>
+                                <td>家賃（万円）</td>
+                                <td><input class="form-control text-center" type="number" id="yachin" name="yachin" min="0" value="14" oninput="myFunction()"></td>
+                            </tr>
+                            <tr>
+                                <td>管理費（万円）</td>
+                                <td id="kanrihi_chintai"></td>
+                            </tr>
+                            <tr>
+                                <td>入居期間（年）</td>
+                                <td id="nyukyokikan_chintai"></td>
+                            </tr>
+                            <tr>
+                                <td>賃料総額（万円）</td>
+                                <td id="chinryosogaku"></td>
+                            </tr>
+                            <tr>
+                                <td>管理費総額（万円）</td>
+                                <td id="kanrihi_sogaku_chintai"></td>
+                            </tr>
+                            <tr>
+                                <td>更新料（万円/2年）</td>
+                                <td id="koshinryo_teigaku"></td>
+                            </tr>
+                            <tr>
+                                <td>更新料総額（万円）</td>
+                                <td id="koshinryo_sogaku"></td>
+                            </tr>
+                            <tr>
+                                <td>駐車場代（万円/月）</td>
+                                <td id="chusyajodai_chintai"></td>
+                            </tr>
+                            <tr>
+                                <td>駐車場代総額（万円）</td>
+                                <td id="chusyajodai_sogaku_chintai"></td>
+                            </tr>
+                            <tr>
+                                <td>総支払額</td>
+                                <td id="soshiharaigaku_chintai"></td>
+                            </tr>
+                            <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                            <tr>
+                                <td>家賃補助（万円/月）</td>
+                                <td><input class="form-control text-center" type="number" id="yachinhojo" name="yachinhojo" min="0" value="1.7" oninput="myFunction()"></td>
+                            </tr>
+                            <tr>
+                                <td>家賃補助総額（万円）</td>
+                                <td id="yachinhojo_sogaku"></td>
+                            </tr>
+                            <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                            <tr class="table-info">
+                                <td>実質負担総額（万円）</td>
+                                <td id="jisshitsufutansogaku_chintai"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="page-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h1>物件価格＆賃料の推移</h1>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th scope="col">築年数</th>
+                                    <th scope="col">価格比率（％）</th>
+                                    <th scope="col">物件価格（税込）</th>
+                                    <th scope="col" class="d-none d-sm-block">物件価格（税抜）</th>
+                                    <th scope="col">表面利回り</th>
+                                    <th scope="col">標準家賃（万円/月）</th>
+                                    <th scope="col" class="d-none d-sm-block">更新料（万円/2年）</th>
+                                    <th scope="col" class="d-none d-sm-block">固定資産税（万円/年）</th>
+                                </tr>
+                                <tbody id="kakakusuii">
+                                </tbody>
+
+                            </tbody>
+
+                        </table>
+                        <p class="text-left">＊築50年以上のマンションの売買実績が少ないため、固定資産税の算定ルールを参考に試算。日本では築100年のマンションの実績がないため、本当に最後まで住めるか注意が必要。</p>
+                        <p class="text-left" style="word-break: break-all;">＊＊データ出典：https://www.nomu.com/mansion/library/trend/knowledge/mansion11.html;
+                            https://tokyo-1r.com/entry/2017/11/25/181334;
+                            https://www.grand-next.jp/colum/中古マンションにかかる固定資産税を計算してみ-2/</p>
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Footer-->
+        <footer class="bg-light py-5">
+            <div class="container"><div class="small text-center text-muted">
+                <a class="twitter-follow-button"  href="https://twitter.com/VS06250629">Follow @持家VS賃貸</a>
+
+            </div></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+
+        <!-- Initialise all values at the beggining -->
+        <script>
+        myFunction();
+        </script>
+    </body>
+</html>
