@@ -196,8 +196,8 @@ function myFunction(){
   document.getElementById("chinryosogaku").value = document.getElementById("yachin").value * document.getElementById("nyukyokikan_chintai").value * 12;
 
   //Calcurate kanrihi sogaku for chintai
-  document.getElementById("kanrihi_sogaku_chintai").innerHTML = document.getElementById("kanrihi_sogaku").value;
-  document.getElementById("kanrihi_sogaku_chintai").value = document.getElementById("kanrihi_sogaku").value;
+  document.getElementById("kanrihi_sogaku_chintai").value = document.getElementById("chinryosogaku").value * 0.1;
+  document.getElementById("kanrihi_sogaku_chintai").innerHTML = document.getElementById("kanrihi_sogaku_chintai").value.toFixed(0);
 
   //Calcurate koshinryo for teigaku chintai
   document.getElementById("koshinryo_teigaku").innerHTML = document.getElementById("yachin").value;
